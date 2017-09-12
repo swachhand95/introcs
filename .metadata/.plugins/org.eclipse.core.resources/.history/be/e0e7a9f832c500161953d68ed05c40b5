@@ -1,0 +1,31 @@
+
+public class RingBuffer {
+	
+	private int first;
+	private int last;
+	private double[] buf;
+	private int cap;
+	
+	public RingBuffer(int capacity) {
+		cap = capacity;
+		buf = new double[cap];
+		first = -1;
+		last = 0;
+	}
+	
+	public void enqueue(double n) {
+		if (last == first) {
+			System.err.println("Buffer full");
+		}
+		else {
+			buf[last%cap] = n;
+			++last;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

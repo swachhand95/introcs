@@ -1,0 +1,44 @@
+
+public class GuitarString {
+	
+	private RingBuffer rb;
+	private static final double DECAY_FACTOR = 0.996;
+	
+	private int roundUp(double n) {
+		if ((int) n == n)
+			return (int) n;
+		return (int) n + 1;
+	}
+
+	public GuitarString(double frequency) {
+		int N = roundUp(44100 / frequency);
+		rb = new RingBuffer(N);
+	}
+	
+	public GuitarString(double[] init) {
+		rb = new RingBuffer(init.length);
+		for (int i = 0; i < init.length; ++i) {
+			rb.enqueue(i);
+		}
+	}
+	
+	public void pluck() {
+		while (!rb.isEmpty())
+			rb.dequeue();
+		while (!rb.isFull())
+			rb.enqueue(-0.5 + Math.random() * 0.5);
+	}
+	
+	public void tic() {
+		double first = rb.dequeue();
+		double second = rb.peek();
+		double avg = (first + second) / 2;
+		rb.enqueue(avg);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

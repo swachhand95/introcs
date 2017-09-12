@@ -1,0 +1,91 @@
+public class RingBuffer {
+	
+	private int first;
+	private int last;
+	private int size;
+	private double[] buf;
+	private int cap;
+	
+	public RingBuffer(int capacity) {
+		cap = capacity;
+		buf = new double[cap];
+		first = 0;
+		last = 0;
+		size = 0;
+	}
+	
+	public boolean isEmpty() {
+		if (size == 0)
+			return true;
+		return false;
+	}
+	
+	public boolean isFull() {
+		if (size == cap)
+			return true;
+		return false;
+	}
+	
+	public void enqueue(double n) {
+		if (isFull()) {
+			System.err.println("Buffer full");
+		}
+		else {
+			buf[last] = n;
+			++size;
+			++last;
+			last %= cap;
+		}
+	}
+	
+	public double dequeue() {
+		if (isEmpty()) {
+			System.err.println("Buffer empty!");
+			return -1;
+		}
+		else {
+			double ret = buf[first];
+			--size;
+			++first;
+			first %= cap;
+			return ret;
+		}
+	}
+	
+	public double peek() {
+		if (isEmpty()) {
+			System.err.println("Buffer empty!");
+			return -1;
+		}
+		else {
+			return buf[first];
+		}
+	}
+	
+	public void print() {
+		System.out.println("First = " + first);
+		System.out.println("Last = " + last);
+		
+		for (int i = 0; i < buf.length; ++i) {
+			System.out.print(buf[i] + " ");
+		}
+		System.out.println();
+	}
+
+	public static void main(String[] args) {
+		RingBuffer rb = new RingBuffer(5);
+		
+		for (int i = 1; !rb.isFull(); ++i) {
+			rb.enqueue(i);
+		}
+		
+		rb.print();
+		
+		while (!rb.isEmpty()) {
+			System.out.println(rb.dequeue());
+		}
+		
+		rb.print();
+	}
+
+}

@@ -1,0 +1,28 @@
+
+public class LFSR {
+	
+	private String register;
+	private int tap;
+	
+	public LFSR(String seed, int t) {
+		register = seed;
+		tap = t;
+	}
+	
+	private int chartoint(char a) {
+		return a - '0';
+	}
+	
+	public int step() {
+		String newreg = register.substring(1, register.length()-1);
+		int lastbit = chartoint(register.charAt(0)) ^ chartoint(register.charAt(tap));
+		newreg += lastbit;
+		register = newreg;
+		return lastbit;
+	}
+
+	public static void main(String[] args) {
+		
+	}
+
+}

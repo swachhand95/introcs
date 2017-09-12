@@ -1,0 +1,28 @@
+
+public class LFSR {
+	
+	private String register;
+	private int tap;
+	
+	public LFSR(String seed, int t) {
+		register = seed;
+		tap = t;
+	}
+	
+	private int chartobit(char a) {
+		if (a == '0')
+			return 0;
+		return 1;
+	}
+	
+	public int step() {
+		String newreg = register.substring(1, register.length());
+		newreg += 
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

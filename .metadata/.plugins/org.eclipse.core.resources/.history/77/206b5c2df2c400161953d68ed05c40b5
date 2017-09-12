@@ -1,0 +1,21 @@
+
+public class PhotoMagic {
+	
+	public static Picture transform(Picture picture, LFSR lfsr) {
+		Picture transformed = new Picture(picture.width(), picture.height());
+		
+		for (int i = 0; i < transformed.height(); ++i) {
+			for (int j = 0; j < transformed.width(); ++j) {
+				
+			}
+		}
+		
+		return transformed;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,53 @@
+
+public class EditDistance {
+	
+	public static final int GAP_PENALTY = 2;
+	public static final int MISMATCH_PENALTY = 1;
+	public static final int MATCH_PENALTY = 0;
+
+	public static int penalty(char a, char b) {
+		if (a != b) {
+			return MISMATCH_PENALTY;			
+		}
+		return MATCH_PENALTY;
+	}
+	
+	/*
+	 * Returns the min of 3 integers
+	 */
+	public static int min(int a, int b, int c) {
+		return Math.min(a, Math.min(b, c));
+	}
+	
+	
+	public static void main(String[] args) {
+		String x = StdIn.readString();
+		String y = StdIn.readString();
+		
+		int M = x.length();
+		int N = y.length();
+		
+		/*
+		 * opt[i][j] = optimal cost of matching string x[i..M] with y[j..N]
+		 */
+		int [][]opt = new int[M+1][N+1];
+		for (int i = M; i >= 0; ++i) {
+			opt[i][N] = 2 * (M - i);
+		}
+		for (int j = N; j >= 0; ++j) {
+			opt[M][j] = 2 * (N - j);
+		}
+		
+		int i = M-1;
+		int j = N-1;
+		for (int i = M-1; i >= 0; --i) {
+			for (int j = N-1; j >= 0; --j) {
+				opt[i][j] = min(opt[i+1][j+1] + penalty(x.charAt(i), y.charAt(j)),
+						opt[i+1][j] + GAP_PENALTY,
+						opt[i][j+1] + GAP_PENALTY);				
+			}
+		}
+		
+		
+	}
+}

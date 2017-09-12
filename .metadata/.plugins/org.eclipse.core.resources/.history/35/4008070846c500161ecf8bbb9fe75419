@@ -1,0 +1,33 @@
+
+public class GuitarString {
+	
+	private RingBuffer rb;
+	
+	private int roundUp(double n) {
+		if ((int) n == n)
+			return (int) n;
+		return (int) n + 1;
+	}
+
+	public GuitarString(double frequency) {
+		int N = roundUp(44100 / frequency);
+		rb = new RingBuffer(N);
+	}
+	
+	public GuitarString(double[] init) {
+		rb = new RingBuffer(init.length);
+		for (int i = 0; i < init.length; ++i) {
+			rb.enqueue(i);
+		}
+	}
+	
+	public void pluck() {
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

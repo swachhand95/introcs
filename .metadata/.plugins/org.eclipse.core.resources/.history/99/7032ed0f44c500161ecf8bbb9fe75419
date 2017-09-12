@@ -1,0 +1,16 @@
+
+public class GuitarString {
+	
+	private RingBuffer rb;
+
+	public GuitarString(double frequency) {
+		double N = 44100 / frequency;
+		rb = new RingBuffer()
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

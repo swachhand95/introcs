@@ -1,0 +1,20 @@
+
+public class GuitarString {
+	
+	private RingBuffer rb;
+	
+	private int roundUp(double n) {
+		if ((int) n == n)
+	}
+
+	public GuitarString(double frequency) {
+		double N = 44100 / frequency;
+		rb = new RingBuffer()
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
